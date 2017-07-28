@@ -12,6 +12,47 @@
 
 @implementation UIImageView (Extension)
 
+-(void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder progress:(void(^)(NSInteger receivedSize, NSInteger expectedSize))progressBlock{
+    
+    [self sd_setImageWithPreviousCachedImageWithURL:url placeholderImage:placeholder options:(SDWebImageCacheMemoryOnly) progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        if (progressBlock) {
+            progressBlock(receivedSize,expectedSize);
+        }
+    } completed:nil];
+    
+
+    
+    
+    
+    
+}
+
+-(void)setImageWithURL:(NSURL *)url progress:(void(^)(NSInteger receivedSize, NSInteger expectedSize))progressBlock{
+
+    
+    [self sd_setImageWithPreviousCachedImageWithURL:url placeholderImage:nil options:(SDWebImageCacheMemoryOnly) progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        if (progressBlock) {
+            progressBlock(receivedSize,expectedSize);
+        }
+    } completed:nil];
+    
+}
+
+-(void)setProgressImageWithURLStr:(NSString*)urlStr{
+    
+    UIProgressView * pro = [[UIProgressView alloc]initWithFrame:(CGRectMake(0, 0, KScreenWidth-30, 5))];
+    pro.tintColor = [UIColor orangeColor];
+    
+    [self addSubview:pro];
+    
+    [self sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil options:(SDWebImageCacheMemoryOnly) progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        pro.progress = (float)receivedSize/(float)expectedSize;
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [pro removeFromSuperview];
+        
+    }];
+    
+}
 
 
 - (void)setImageToBlur:(UIImage *)image

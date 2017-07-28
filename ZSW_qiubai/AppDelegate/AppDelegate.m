@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SW_BaseTabBarCtrl.h"
-
+#import "SWNavigationController.h"
 @interface AppDelegate ()
 
 @end
@@ -25,14 +25,25 @@
     
 //    [self setupConfig];
     
+//    UINavigationController *nav = [[UINavigationController alloc] init];
+//    // 创建3个测试控制器
+//    UIViewController *vc1 = [[UIViewController alloc] init];
+//    vc1.view.backgroundColor = [UIColor blueColor];
+//    UIViewController *vc2 = [[UIViewController alloc] init];
+//    vc2.view.backgroundColor = [UIColor redColor];
+//    UIViewController *vc3 = [[UIViewController alloc] init];
+//    vc3.view.backgroundColor = [UIColor greenColor];
+//    // 最终会显示vc3
+//    [nav setViewControllers:@[vc1,vc2] animated:YES];
+//    _window.rootViewController = nav;
+//    return YES;
     
     SW_BaseTabBarCtrl * tab = [[SW_BaseTabBarCtrl alloc]init];
+    
+    
     _window.rootViewController = tab;
     
     
-    
-    
-    return YES;
     return YES;
 }
 

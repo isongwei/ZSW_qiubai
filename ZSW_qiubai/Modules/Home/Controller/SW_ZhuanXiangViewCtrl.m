@@ -9,7 +9,12 @@
 #import "SW_ZhuanXiangViewCtrl.h"
 #import "SW_ContentCell.h"
 #import "SW_DetailViewCtrl.h"//详情
-#import "SW_VideoPlayViewCtrl.h"//视频
+
+#import "SW_TestViewCtrl.h"//视频
+
+#import "SW_VideoPlayView.h"
+
+#import "SWVideoPlayer.h"//自定义视频
 
 
 /*
@@ -190,15 +195,38 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-//    NSDictionary * infoDic = _dataArray[indexPath.row];
-//    if ([infoDic[@"format"] isEqualToString:@"video"]) {
-//        
-//      
-//    }
-//    SW_VideoPlayViewCtrl * vc  = [[SW_VideoPlayViewCtrl alloc]init];
-//    
-//    [self.navigationController pushViewController:vc animated:YES];
-//    return;
+    
+    
+    
+    
+    SWVideoPlayer *vvv= [[SWVideoPlayer alloc]initWithFrame:CGRectMake(0, 0, 375, 300)];
+                         //WithUrl:[NSURL URLWithString:@"http://circle-video.qiushibaike.com/video/l0525352xwb.mp4"]];
+    
+    vvv.url = [NSURL URLWithString:@"http://qiubai-video.qiushibaike.com/19KXC10AG8QO0CI2.mp4"];
+    [self.view addSubview:vvv];
+    return;
+    
+    
+    NSDictionary * infoDic = _dataArray[indexPath.row];
+    
+    
+    SW_VideoPlayView * v = [[SW_VideoPlayView alloc]initWithFrame:(CGRectMake(0, 100, 375, 300))];
+    [self.view addSubview:v];
+    
+    return;
+    
+    
+    
+    if ([infoDic[@"format"] isEqualToString:@"video"]) {
+        NSDictionary * dic = _dataArray[indexPath.row];
+        
+        SW_TestViewCtrl * vc = [[SW_TestViewCtrl alloc]init];
+        vc.flv = dic[@"high_url"];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        return;
+    }
+
     SW_DetailViewCtrl * VC = [SW_DetailViewCtrl new];
     VC.infoDic = _dataArray[indexPath.row];
     [self.navigationController pushViewController:VC animated:YES];

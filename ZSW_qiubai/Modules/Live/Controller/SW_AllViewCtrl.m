@@ -26,15 +26,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+
     [self initView];
     
     [self initData];
+    
+    [self requestData];return;
     
     [_collectionView.mj_header beginRefreshing];
     
     
 }
+
+
 #pragma mark - ===============init===============
 -(void)initView{
     

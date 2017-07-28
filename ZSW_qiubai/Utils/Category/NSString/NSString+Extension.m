@@ -76,7 +76,15 @@
 }
 
 
+#pragma mark - url编码
+- (NSString *)encodeToPercentEscapeString: (NSString *) input
+{
+    
+    
+    //    URLString = [URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
+    return [input stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`#%^{}\"[]|\\<> "].invertedSet];
+}
 
 #pragma mark 计算字符串大小
 - (CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize

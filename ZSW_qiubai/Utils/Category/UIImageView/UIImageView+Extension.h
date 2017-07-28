@@ -11,6 +11,27 @@
 @interface UIImageView (Extension)
 
 
+
+/**
+ 带进度的图片加载
+
+ @param url url
+ @param placeholder 替代图
+ @param progressBlock 返回进度
+ */
+-(void)setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder progress:(void(^)(NSInteger receivedSize, NSInteger expectedSize))progressBlock;
+
+/**
+ 带进度的图片加载
+ 
+ @param url url
+ @param progressBlock 返回进度
+ */
+-(void)setImageWithURL:(NSURL *)url progress:(void(^)(NSInteger receivedSize, NSInteger expectedSize))progressBlock;
+
+-(void)setProgressImageWithURLStr:(NSString*)urlStr;
+
+
 /****************   模糊效果   ****************/
 /**
  根据模糊程度来处理图片

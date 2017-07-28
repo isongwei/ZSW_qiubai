@@ -12,7 +12,6 @@
 
 #define kDefaultBackImageName @"backbutton"
 
-
 #pragma mark - SWNavigationController
 @interface SWNavigationController ()<UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 
@@ -40,6 +39,8 @@
     }
     return self;
 }
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -80,7 +81,7 @@
 
 #pragma mark - UIGestureRecognizerDelegate
 
-//修复有水平方向滚动的ScrollView时边缘返回手势失效的问题
+//修复有水平方向滚动的  ScrollView  时边缘返回手势失效的问题
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
 }
@@ -213,27 +214,15 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #pragma mark - SWWrapViewController
 static NSValue *SW_tabBarRectValue;
+
+
+@interface SWWrapViewController ()
+
+@property (nonatomic, strong) __kindof SWWrapNavigationController *contentViewController;
+
+@end
 
 
 @implementation SWWrapViewController
@@ -241,19 +230,30 @@ static NSValue *SW_tabBarRectValue;
 + (SWWrapViewController *)wrapViewControllerWithViewController:(UIViewController *)viewController {
     
     SWWrapNavigationController *wrapNavController = [[SWWrapNavigationController alloc] init];
+    
     wrapNavController.viewControllers = @[viewController];
     //设置一张空的图片
     
-    
     SWWrapViewController *wrapViewController = [[SWWrapViewController alloc] init];
     
-    [wrapViewController.view addSubview:wrapNavController.view];
+    wrapViewController.contentViewController = wrapNavController;
+//    [wrapViewController.view addSubview:wrapNavController.view];
+ 
     [wrapViewController addChildViewController:wrapNavController];
     
     return wrapViewController;
 }
 
+-(void)viewDidLoad{
+    
+    [super viewDidLoad];
+    
+    [self.view addSubview:self.contentViewController.view];
+    
+}
+
 - (void)viewDidLayoutSubviews {
+    
     [super viewDidLayoutSubviews];
     
     if (self.tabBarController && !SW_tabBarRectValue) {
@@ -272,12 +272,14 @@ static NSValue *SW_tabBarRectValue;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
     self.tabBarController.tabBar.translucent = YES;
     if (self.tabBarController && !self.tabBarController.tabBar.hidden && SW_tabBarRectValue) {
         self.tabBarController.tabBar.frame = SW_tabBarRectValue.CGRectValue;
     }else{
         self.tabBarController.tabBar.frame = CGRectMake(0, KScreenHeight - 49 , KScreenWidth, 49);
     }
+    
 }
 
 - (BOOL)SW_fullScreenPopGestureEnabled {

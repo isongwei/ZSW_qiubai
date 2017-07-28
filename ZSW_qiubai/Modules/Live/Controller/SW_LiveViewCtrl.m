@@ -37,10 +37,12 @@
     [self updateUI];
     
     self.navigationItem.titleView = self.titleView;
+
     
+}
+- (void)didTapNextButton {
     
     
 }
-
 
 @end

@@ -32,7 +32,7 @@
     self.navigationController.navigationBarHidden = YES;
     
 //    [self playWith:@"http://circle-video.qiushibaike.com/video/m0525cxdf6f.mp4"];return;
-    
+    [MBManager showLoading];
     [self playWith:NSStringFormat(@"%@",self.flv)];
     
     
@@ -43,7 +43,9 @@
 - (IJKFFOptions *)options {
     if (!_options) {
         IJKFFOptions *options = [IJKFFOptions optionsByDefault];
-        [options setPlayerOptionIntValue:1  forKey:@"videotoolbox"];
+        // 开启硬解码
+        [options setPlayerOptionValue:@"1" forKey:@"videotoolbox"];
+//        [options setPlayerOptionIntValue:1  forKey:@"videotoolbox"];
         // 帧速率(fps) 非标准桢率会导致音画不同步，所以只能设定为15或者29.97
         [options setPlayerOptionIntValue:29.97 forKey:@"r"];
         // 置音量大小，256为标准  要设置成两倍音量时则输入512，依此类推
@@ -61,12 +63,13 @@
         IJKFFMoviePlayerController *moviePlayer = [[IJKFFMoviePlayerController alloc] initWithContentURLString:_flv withOptions:self.options];
         
         // 4.1 设置播放视频视图的frame与控制器的View的bounds一致
-        _moviePlayer.view.frame = self.view.bounds;
+        _moviePlayer.view.frame = self.view.bounds;//CGRectMake(0, 0, KScreenWidth, KScreenWidth);//
+        
         // 4.2 设置适配横竖屏(设置四边固定,长宽灵活)
         _moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 
         // 填充fill
-        moviePlayer.scalingMode = IJKMPMovieScalingModeAspectFill;//IJKMPMovieScalingModeAspectFit
+        moviePlayer.scalingMode = IJKMPMovieScalingModeAspectFit;//IJKMPMovieScalingModeAspectFit
         // 设置自动播放(必须设置为NO, 防止自动播放, 才能更好的控制直播的状态)
         moviePlayer.shouldAutoplay = NO;
         // 默认不显示
@@ -184,9 +187,14 @@
             
         case IJKMPMoviePlaybackStateStopped:
             NSLog(@"IJKMPMoviePlayBackStateDidChange %d: stoped", (int)_moviePlayer.playbackState);
+            [self.navigationController popViewControllerAnimated:YES];
             break;
             
         case IJKMPMoviePlaybackStatePlaying:
+            
+            
+            
+            [MBManager hideAlert];
             NSLog(@"IJKMPMoviePlayBackStateDidChange %d: playing", (int)_moviePlayer.playbackState);
             break;
             
@@ -261,7 +269,10 @@
     DLog(@"dealloc方法被调用");
     if (_moviePlayer) {
         
+        
         [_moviePlayer shutdown];
+        
+        
         [_moviePlayer.view removeFromSuperview];
         _moviePlayer = nil;
         

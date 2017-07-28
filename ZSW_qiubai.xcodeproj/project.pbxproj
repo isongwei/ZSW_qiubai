@@ -24,6 +24,9 @@
 		262AC47A1F1BC184002FA716 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 262AC4791F1BC184002FA716 /* VideoToolbox.framework */; };
 		266064511F153FB8003FF0DF /* SW_DetailViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2660644F1F153FB8003FF0DF /* SW_DetailViewCtrl.m */; };
 		266064521F153FB8003FF0DF /* SW_DetailViewCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 266064501F153FB8003FF0DF /* SW_DetailViewCtrl.xib */; };
+		26E94A2A1F20FD2A00A11AF0 /* SW_VideoPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E94A281F20FD2A00A11AF0 /* SW_VideoPlayView.m */; };
+		26FA5FA61F2478FD0059513A /* SWControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA5FA51F2478FD0059513A /* SWControlView.m */; };
+		26FA5FA91F2479F00059513A /* SWVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FA5FA81F2479F00059513A /* SWVideoPlayer.m */; };
 		8B1DADF67445AD5892D535D1 /* libPods-ZSW_qiubai.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89EA74BE7BC50CB5AE4F14F6 /* libPods-ZSW_qiubai.a */; };
 		F97864231F18622900A160A6 /* SW_VideoPlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F97864211F18622900A160A6 /* SW_VideoPlayCell.m */; };
 		F97864241F18622900A160A6 /* SW_VideoPlayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97864221F18622900A160A6 /* SW_VideoPlayCell.xib */; };
@@ -39,6 +42,8 @@
 		F998E6CE1F1C4A8800D51335 /* UIImageView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F998E6CD1F1C4A8800D51335 /* UIImageView+Extension.m */; };
 		F998E6D11F1C4BB200D51335 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F998E6D01F1C4BB200D51335 /* UIImage+ImageEffects.m */; };
 		F998E6D41F1C63B300D51335 /* SW_Test2ViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = F998E6D31F1C63B300D51335 /* SW_Test2ViewCtrl.m */; };
+		F998E6DF1F1CA44C00D51335 /* SW_LoginViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = F998E6DD1F1CA44C00D51335 /* SW_LoginViewCtrl.m */; };
+		F998E6E01F1CA44C00D51335 /* SW_LoginViewCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = F998E6DE1F1CA44C00D51335 /* SW_LoginViewCtrl.xib */; };
 		F9B7E3081F14AC7800F1CBC5 /* SW_ZhuanXiangViewCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B7E3061F14AC7800F1CBC5 /* SW_ZhuanXiangViewCtrl.m */; };
 		F9B7E3091F14AC7800F1CBC5 /* SW_ZhuanXiangViewCtrl.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B7E3071F14AC7800F1CBC5 /* SW_ZhuanXiangViewCtrl.xib */; };
 		F9B7E3121F14AF5A00F1CBC5 /* SW_ContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B7E3101F14AF5A00F1CBC5 /* SW_ContentCell.m */; };
@@ -124,6 +129,12 @@
 		2660644E1F153FB8003FF0DF /* SW_DetailViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SW_DetailViewCtrl.h; sourceTree = "<group>"; };
 		2660644F1F153FB8003FF0DF /* SW_DetailViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SW_DetailViewCtrl.m; sourceTree = "<group>"; };
 		266064501F153FB8003FF0DF /* SW_DetailViewCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SW_DetailViewCtrl.xib; sourceTree = "<group>"; };
+		26E94A271F20FD2A00A11AF0 /* SW_VideoPlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SW_VideoPlayView.h; sourceTree = "<group>"; };
+		26E94A281F20FD2A00A11AF0 /* SW_VideoPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SW_VideoPlayView.m; sourceTree = "<group>"; };
+		26FA5FA41F2478FD0059513A /* SWControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWControlView.h; sourceTree = "<group>"; };
+		26FA5FA51F2478FD0059513A /* SWControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWControlView.m; sourceTree = "<group>"; };
+		26FA5FA71F2479F00059513A /* SWVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWVideoPlayer.h; sourceTree = "<group>"; };
+		26FA5FA81F2479F00059513A /* SWVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWVideoPlayer.m; sourceTree = "<group>"; };
 		89EA74BE7BC50CB5AE4F14F6 /* libPods-ZSW_qiubai.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZSW_qiubai.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C210C79304C440CAA2CBE39E /* Pods-ZSW_qiubai.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZSW_qiubai.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZSW_qiubai/Pods-ZSW_qiubai.debug.xcconfig"; sourceTree = "<group>"; };
 		F97864201F18622900A160A6 /* SW_VideoPlayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SW_VideoPlayCell.h; sourceTree = "<group>"; };
@@ -147,6 +158,9 @@
 		F998E6D01F1C4BB200D51335 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		F998E6D21F1C63B300D51335 /* SW_Test2ViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SW_Test2ViewCtrl.h; sourceTree = "<group>"; };
 		F998E6D31F1C63B300D51335 /* SW_Test2ViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SW_Test2ViewCtrl.m; sourceTree = "<group>"; };
+		F998E6DC1F1CA44C00D51335 /* SW_LoginViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SW_LoginViewCtrl.h; sourceTree = "<group>"; };
+		F998E6DD1F1CA44C00D51335 /* SW_LoginViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SW_LoginViewCtrl.m; sourceTree = "<group>"; };
+		F998E6DE1F1CA44C00D51335 /* SW_LoginViewCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SW_LoginViewCtrl.xib; sourceTree = "<group>"; };
 		F9B7E3051F14AC7800F1CBC5 /* SW_ZhuanXiangViewCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SW_ZhuanXiangViewCtrl.h; sourceTree = "<group>"; };
 		F9B7E3061F14AC7800F1CBC5 /* SW_ZhuanXiangViewCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SW_ZhuanXiangViewCtrl.m; sourceTree = "<group>"; };
 		F9B7E3071F14AC7800F1CBC5 /* SW_ZhuanXiangViewCtrl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SW_ZhuanXiangViewCtrl.xib; sourceTree = "<group>"; };
@@ -286,6 +300,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26FA5FA01F2478C80059513A /* SWViewPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				26FA5FA71F2479F00059513A /* SWVideoPlayer.h */,
+				26FA5FA81F2479F00059513A /* SWVideoPlayer.m */,
+				26FA5FA41F2478FD0059513A /* SWControlView.h */,
+				26FA5FA51F2478FD0059513A /* SWControlView.m */,
+			);
+			name = SWViewPlayer;
+			path = ZSW_qiubai/lIB/SWViewPlayer;
+			sourceTree = SOURCE_ROOT;
+		};
 		89B57E6581CBDF0110C63A54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +424,7 @@
 		F9C53E3B1F147953006F46F5 /* Lib(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				26FA5FA01F2478C80059513A /* SWViewPlayer */,
 				262AC4691F1BC0B6002FA716 /* IJKMediaFramework.framework */,
 				F9C53F061F1481C3006F46F5 /* RootNavigation */,
 				F9C53ED61F147FC2006F46F5 /* MBProgressHUD */,
@@ -638,6 +665,9 @@
 		F9C53E571F147A6B006F46F5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F998E6DC1F1CA44C00D51335 /* SW_LoginViewCtrl.h */,
+				F998E6DD1F1CA44C00D51335 /* SW_LoginViewCtrl.m */,
+				F998E6DE1F1CA44C00D51335 /* SW_LoginViewCtrl.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1031,6 +1061,8 @@
 				F97864201F18622900A160A6 /* SW_VideoPlayCell.h */,
 				F97864211F18622900A160A6 /* SW_VideoPlayCell.m */,
 				F97864221F18622900A160A6 /* SW_VideoPlayCell.xib */,
+				26E94A271F20FD2A00A11AF0 /* SW_VideoPlayView.h */,
+				26E94A281F20FD2A00A11AF0 /* SW_VideoPlayView.m */,
 			);
 			path = ToolView;
 			sourceTree = "<group>";
@@ -1108,6 +1140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9C53EED1F14804A006F46F5 /* SW_LiveViewCtrl.xib in Resources */,
+				F998E6E01F1CA44C00D51335 /* SW_LoginViewCtrl.xib in Resources */,
 				262AC45E1F1BB423002FA716 /* SW_FamilyViewCtrl.xib in Resources */,
 				F9C53EF71F14806A006F46F5 /* SW_NoteViewCtrl.xib in Resources */,
 				F9C53E2F1F1477FF006F46F5 /* LaunchScreen.storyboard in Resources */,
@@ -1192,6 +1225,7 @@
 				F9C9C3DD1F15D5E50046DF3F /* SW_CommentView.m in Sources */,
 				F9C53EEC1F14804A006F46F5 /* SW_LiveViewCtrl.m in Sources */,
 				F9C53EC51F147EF6006F46F5 /* UIButton+timer.m in Sources */,
+				26E94A2A1F20FD2A00A11AF0 /* SW_VideoPlayView.m in Sources */,
 				F9B7E3121F14AF5A00F1CBC5 /* SW_ContentCell.m in Sources */,
 				F9C53F051F14810C006F46F5 /* SW_BaseViewCtrl.m in Sources */,
 				F9C53ECF1F147EF6006F46F5 /* UIView+Extension.m in Sources */,
@@ -1205,6 +1239,7 @@
 				F9C53EBB1F147EF6006F46F5 /* NSDate+convenience.m in Sources */,
 				F9C53EC01F147EF6006F46F5 /* NSString+UserInfo.m in Sources */,
 				F9C53EE01F147FC2006F46F5 /* MBManager.m in Sources */,
+				26FA5FA91F2479F00059513A /* SWVideoPlayer.m in Sources */,
 				F9C53EBE1F147EF6006F46F5 /* NSString+Date.m in Sources */,
 				F9C53EC61F147EF6006F46F5 /* UIColor+Extension.m in Sources */,
 				F9B7E3081F14AC7800F1CBC5 /* SW_ZhuanXiangViewCtrl.m in Sources */,
@@ -1219,6 +1254,7 @@
 				F9C53ECB1F147EF6006F46F5 /* UILabel+Extension.m in Sources */,
 				F9C53EE21F147FC2006F46F5 /* MBProgressHUD.m in Sources */,
 				262AC4581F1BB28D002FA716 /* SW_AllViewCtrl.m in Sources */,
+				F998E6DF1F1CA44C00D51335 /* SW_LoginViewCtrl.m in Sources */,
 				F97864231F18622900A160A6 /* SW_VideoPlayCell.m in Sources */,
 				F9C53ECC1F147EF6006F46F5 /* UIScrollView+Extension.m in Sources */,
 				F9C53ECE1F147EF6006F46F5 /* UITextView+Extension.m in Sources */,
@@ -1241,6 +1277,7 @@
 				F9C53F041F14810C006F46F5 /* SW_BaseTabBarCtrl.m in Sources */,
 				F98B981D1F176C6C0077B4BF /* SW_VideoPlayViewCtrl.m in Sources */,
 				F9C53EC71F147EF6006F46F5 /* UIDevice+SW.m in Sources */,
+				26FA5FA61F2478FD0059513A /* SWControlView.m in Sources */,
 				F9C53EC81F147EF6006F46F5 /* UIFont+Extension.m in Sources */,
 				F9C53EBC1F147EF6006F46F5 /* NSDate+Helper.m in Sources */,
 				F9C53E6A1F147A96006F46F5 /* AppManager.m in Sources */,

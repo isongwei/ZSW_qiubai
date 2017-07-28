@@ -52,6 +52,14 @@
     UIGraphicsEndImageContext();
     
     return screenshot;
+    
+    
+//    UIGraphicsBeginImageContext(self.frame.size);
+//    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+//    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return img;
+    
 }
 
 - (UIImage *)screenshotWithOffset:(CGFloat)deltaY

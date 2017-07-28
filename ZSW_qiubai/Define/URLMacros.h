@@ -12,7 +12,7 @@
 
 /*
  主页刷新
- @"https://119.29.47.97/mainpage/list?latitude=31.23014940598434&readarticles=%5B119280533%5D&count=30&type=refresh&longitude=121.4943777074373&page=1&AdID=14998250586097E57B19AA"
+ @"https://119.29.47.97/mainpage/list?count=30&type=refresh&page=1&AdID=14998250586097E57B19AA"
 
  */
 
@@ -49,7 +49,9 @@
 
 #define URL_live_all @"https://119.29.47.97/live/all/list?count=30&page=%ld&AdID=1500216920956300000000"
 
+//糗友圈
 
+#define URL_Friend_video  @"https://119.29.47.97/article/video/list?page=1&AdID=1500454892579000000000	200"
 
 
 #endif /* URLMacros_h */

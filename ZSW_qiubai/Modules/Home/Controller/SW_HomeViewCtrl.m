@@ -19,6 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+
+    
     NSDictionary * strDic = @{
                               @"专享":@"SW_ZhuanXiangViewCtrl",
                               @"视频":@"SW_ZhuanXiangViewCtrl",

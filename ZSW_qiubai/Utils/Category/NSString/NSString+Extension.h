@@ -20,6 +20,8 @@
 - (NSString*) sha1Str;
 
 
+#pragma mark - url编码
+- (NSString *)encodeToPercentEscapeString: (NSString *) input;
 
 
 - (CGSize)sizeWithFont:(UIFont *)font maxSize:(CGSize)maxSize;

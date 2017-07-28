@@ -29,6 +29,13 @@
     _infoDic = infoDic;
     
     [_imageV sd_setImageWithURL:[NSURL URLWithString:infoDic[@"author"][@"headurl"]] placeholderImage:[UIImage imageNamed:@"default_avatar"]];
+    
+    
+//    [_imageV sd_setImageWithURL:[NSURL URLWithString:infoDic[@"author"][@"headurl"]] placeholderImage:nil options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//        
+//        NSLog(@"%ld-----%ld",(long)receivedSize,(long)expectedSize);
+//        
+//    } completed:nil];
     _titleL.text = infoDic[@"author"][@"name"];
     _amountL.text =  NSStringFormat(@"%ld",[infoDic[@"accumulated_count"] integerValue]);
     

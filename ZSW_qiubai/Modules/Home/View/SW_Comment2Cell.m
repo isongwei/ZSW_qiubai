@@ -109,6 +109,9 @@
     
     _LandlordL.hidden = !(self.numID == [infoDic[@"user"][@"uid"] integerValue]);
     [_headerImage sd_setImageWithURL:[NSURL URLWithString:NSStringFormat(@"http:%@",infoDic[@"user"][@"medium"])] placeholderImage:[UIImage imageNamed:@"default_avatar"]];
+    
+    
+ 
     _nameL.text = infoDic[@"user"][@"login"];
     _contentL.text =  infoDic[@"content"];
     [_contentL lineSpace:5];

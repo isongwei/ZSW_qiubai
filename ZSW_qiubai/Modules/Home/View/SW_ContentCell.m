@@ -15,6 +15,7 @@
 
 @property (nonatomic,weak) IBOutlet UILabel * contentL;
 @property (nonatomic,weak) IBOutlet UIImageView * imageV;
+@property (nonatomic,weak) IBOutlet UIImageView * playImageV;
 
 
 @property (nonatomic,weak) IBOutlet UILabel * funnyL;
@@ -81,7 +82,7 @@
     _imageV.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"default_pic_mask"]] ;
     [_imageV sd_clearAutoLayoutSettings];
     _imageV.hidden = YES;
- 
+    _playImageV.hidden = YES;
     if ([infoDic[@"format"] isEqualToString:@"word"]) {
         
         
@@ -137,7 +138,9 @@
     }else if ([infoDic[@"format"] isEqualToString:@"video"]) {
         
         _imageV.hidden = NO;
+        _playImageV.hidden = NO;
         [self.imageV sd_setImageWithURL:infoDic[@"pic_url"] ];
+//        [self.imageV setProgressImageWithURLStr:infoDic[@"pic_url"]];
         
         _contentL.sd_layout
         .leftSpaceToView(self.contentView, 15)
@@ -152,6 +155,12 @@
         .topSpaceToView(_contentL, 10)
         .widthIs(KScreenWidth-30)
         .autoHeightRatio(1);
+        
+        
+        _playImageV.sd_layout
+        .centerXEqualToView(_imageV)
+        .centerYEqualToView(_imageV)
+        .widthEqualToHeight();
 
         [self setupAutoHeightWithBottomView:_imageV bottomMargin:90];
     }

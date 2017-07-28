@@ -20,6 +20,8 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = KBGColor;
     
+    __SWFUNC__
+    
 }
 
 

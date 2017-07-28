@@ -28,6 +28,8 @@
 #import "SDCycleScrollView.h" //
 
 
+#import "SW_LoginViewCtrl.h"//登录界面
+
 
 //分类
 #import "UILabel+Attribute.h"
@@ -36,6 +38,7 @@
 #import "NSString+Date.h"
 #import "UIViewController+SWNavigationExtension.h"//全屏返回
 #import "UIImage+ImageEffects.h"//模糊处理
+#import "UIImageView+Extension.h"//imageView 的分类
 
 
 #endif /* qiushibaike_pch */

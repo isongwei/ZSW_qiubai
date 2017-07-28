@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="442" height="490"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="442" height="489.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="442" height="490"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTW-I6-QwF">
@@ -71,6 +71,10 @@
                         <rect key="frame" x="63" y="159" width="283" height="232"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="video_play" translatesAutoresizingMaskIntoConstraints="NO" id="OO0-y8-d7C">
+                        <rect key="frame" x="93" y="220" width="175" height="131"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="DN9-Ib-OcL" firstAttribute="centerY" secondItem="3d4-fv-eRv" secondAttribute="centerY" id="Gg1-pq-3Kc"/>
@@ -91,9 +95,13 @@
                 <outlet property="headerImage" destination="7EA-WU-21G" id="hWO-Fo-txB"/>
                 <outlet property="imageV" destination="J03-HC-474" id="MsU-Wi-yF0"/>
                 <outlet property="nameL" destination="1S0-hg-2o8" id="jUP-YX-sAe"/>
+                <outlet property="playImageV" destination="OO0-y8-d7C" id="wFU-2p-FYL"/>
                 <outlet property="shareL" destination="Qb3-wk-1vq" id="gP0-TW-U78"/>
             </connections>
             <point key="canvasLocation" x="110" y="-88"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="video_play" width="80" height="80"/>
+    </resources>
 </document>

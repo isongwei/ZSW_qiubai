@@ -14,12 +14,13 @@
 //导航栏控制器
 
 @interface SWNavigationController : UINavigationController
+
 @property (nonatomic, strong) UIImage *backButtonImage;
 @property (nonatomic, assign) BOOL fullScreenPopGestureEnabled;//是否全屏返回
 @property (nonatomic, copy, readonly) NSArray *SW_viewControllers;
 
-@end
 
+@end
 
 
 //控制器
