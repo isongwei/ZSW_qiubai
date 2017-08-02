@@ -10,6 +10,8 @@
 
 @interface SW_BaseViewCtrl ()
 
+
+
 @end
 
 @implementation SW_BaseViewCtrl
@@ -23,6 +25,7 @@
     __SWFUNC__
     
 }
+
 
 
 

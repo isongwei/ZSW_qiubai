@@ -9,5 +9,5 @@
 #import "SW_BaseViewCtrl.h"
 
 @interface SW_VideoPlayViewCtrl : SW_BaseViewCtrl
-
+@property (nonatomic,strong) NSString  *  flv;
 @end

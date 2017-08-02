@@ -11,6 +11,9 @@
 
 
 @interface SW_BaseTabBarCtrl ()
+
+
+
 @property (nonatomic,strong)NSMutableArray *array;
 @end
 
@@ -23,6 +26,8 @@
     [self createUI];
 
 }
+
+
 
 -(void)createUI{
  

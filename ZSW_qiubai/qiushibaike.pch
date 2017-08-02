@@ -20,6 +20,9 @@
 
 
 #import "UIImageView+WebCache.h"//image
+#import "UIButton+WebCache.h"
+
+
 #import "SDAutoLayout.h" //
 
 

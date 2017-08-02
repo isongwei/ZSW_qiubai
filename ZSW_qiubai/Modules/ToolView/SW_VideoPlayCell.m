@@ -8,8 +8,9 @@
 
 #import "SW_VideoPlayCell.h"
 
+
 @interface SW_VideoPlayCell ()
-@property (nonatomic,weak) IBOutlet UIImageView * imageV;
+@property (nonatomic,weak) IBOutlet UIButton * imageV;
 @property (nonatomic,weak) IBOutlet UILabel * titleL;
 
 
@@ -25,12 +26,22 @@
 -(void)setInfoDic:(NSDictionary *)infoDic{
     _infoDic = infoDic;
     _titleL.text = infoDic[@"content" ];
-    [self.imageV sd_setImageWithURL:infoDic[@"pic_url"] ];
+    
+    
+    [self.imageV sd_setBackgroundImageWithURL:infoDic[@"pic_url"] forState:(UIControlStateNormal)];
+ 
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
+}
+
+-(IBAction)playBtn:(UIButton*)btn{
+    
+    if (self.playClicked) {
+        self.playClicked(btn);
+    }
     
 }
 

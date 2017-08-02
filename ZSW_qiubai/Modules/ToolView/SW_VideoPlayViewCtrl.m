@@ -9,10 +9,20 @@
 #import "SW_VideoPlayViewCtrl.h"
 #import "SW_VideoPlayCell.h"
 
-@interface SW_VideoPlayViewCtrl ()
-@property (nonatomic,strong) SW_VideoPlayCell *currentCell;
+#import "SWVideoPlayer.h"
+
+#import "SW_BaseTabBarCtrl.h"
+
+@interface SW_VideoPlayViewCtrl ()<UIScrollViewDelegate>
+
+{
+    SW_VideoPlayCell *currentCell;
+    NSIndexPath * currentIndexPath;
+}
 
 
+
+@property (nonatomic,strong) SWVideoPlayer * player;
 
 @property (nonatomic,weak) IBOutlet UITableView * tableView;
 @property (nonatomic,strong) NSMutableArray * dataArray;
@@ -25,9 +35,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBar.hidden = YES;
     self.SW_fullScreenPopGestureEnabled = NO;
     self.view.backgroundColor = [UIColor clearColor];
+    
     
     [self initView];
     
@@ -89,6 +100,7 @@
         [_tableView.mj_header endRefreshing];
         [_tableView.mj_footer endRefreshing];
         [MBManager showError:@"网络出错了~~"];
+        
     }];
 }
 
@@ -109,11 +121,91 @@
     cell.infoDic = dic;
     
     
+    WS(weakSelf)
+    cell.playClicked = ^(UIButton *btn) {
+        btn.tag = 1000+indexPath.row;
+        [weakSelf startPlayVideo:btn];
+    };
+    
+    
+    if (_player && _player.superview) {
+        
+        NSArray * indexpaths = [tableView indexPathsForVisibleRows];
+        if (![indexpaths containsObject:currentIndexPath]) {
+            if ([[UIApplication sharedApplication].keyWindow.subviews containsObject:_player]) {
+                _player.hidden = NO;
+                
+            }else{
+                _player.hidden = YES;
+            }
+        }else{
+            if ([cell.imageV.subviews containsObject:_player]) {
+                [cell.imageV addSubview:_player];
+                
+                [_player play];
+                _player.hidden = NO;
+                
+            }
+            
+        }
+        
+    }
+    
     
     return cell;
     
     
 }
+
+-(void)startPlayVideo:(UIButton *)sender{
+    
+    currentIndexPath = [NSIndexPath indexPathForRow:sender.tag-1000 inSection:0];
+    
+    currentCell = (SW_VideoPlayCell * )[self.tableView cellForRowAtIndexPath:currentIndexPath];
+    
+    NSDictionary * dic = _dataArray[sender.tag-1000];
+    
+    if (_player) {
+        
+        [self releaseSWPlayer];
+        _player = [[SWVideoPlayer alloc]initWithFrame:sender.bounds];
+        _player.urlString = dic[@"high_url"];
+        
+    }else{
+        _player = [[SWVideoPlayer alloc]initWithFrame:sender.bounds];
+        _player.urlString = dic[@"high_url"];
+    }
+    
+    
+    [currentCell.imageV addSubview:_player];
+    [currentCell.imageV bringSubviewToFront:_player];
+    
+    [_tableView reloadData];
+}
+
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if (scrollView == self.tableView) {
+        if (_player == nil) {
+            return;
+        }
+        if (_player.superview) {
+            
+            CGRect rectInTableView = [_tableView rectForRowAtIndexPath:currentIndexPath];
+            
+            CGRect rectInSuperView = [_tableView convertRect:rectInTableView toView:self.tableView.superview];
+            
+            
+            if (rectInSuperView.origin.y < -currentCell.imageV.frame.size.height || rectInSuperView.origin.y > [[UIScreen mainScreen]bounds].size.height) {
+                [self releaseSWPlayer];
+                
+                
+            }
+        }
+    }
+}
+
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
@@ -148,6 +240,22 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
  
+}
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
+
+#pragma mark =============releaseSWPlayer=============
+
+
+-(void)releaseSWPlayer{
+    
+    [_player stop];
+    
+    
 }
 
 

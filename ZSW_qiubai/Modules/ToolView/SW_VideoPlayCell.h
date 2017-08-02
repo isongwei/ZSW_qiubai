@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SW_VideoPlayCell : UITableViewCell
-@property (nonatomic,weak,readonly) IBOutlet UIImageView * imageV;
+@property (nonatomic,weak,readonly) IBOutlet UIButton * imageV;
 @property (nonatomic,strong) NSDictionary * infoDic;
+
+@property (nonatomic,copy) void(^playClicked)(UIButton *);
+
 @end
