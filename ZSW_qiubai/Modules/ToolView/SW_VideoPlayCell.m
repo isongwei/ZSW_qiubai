@@ -11,7 +11,9 @@
 
 @interface SW_VideoPlayCell ()
 @property (nonatomic,weak) IBOutlet UIButton * imageV;
+@property (nonatomic,weak) IBOutlet UIImageView * headerV;
 @property (nonatomic,weak) IBOutlet UILabel * titleL;
+@property (nonatomic,weak) IBOutlet UILabel * contentL;
 
 
 @end
@@ -25,8 +27,9 @@
 
 -(void)setInfoDic:(NSDictionary *)infoDic{
     _infoDic = infoDic;
-    _titleL.text = infoDic[@"content" ];
-    
+    _titleL.text = infoDic[@"user"][@"login"];
+    _contentL.text = infoDic[@"content"];
+    [self.headerV sd_setImageWithURL:[NSURL URLWithString:NSStringFormat(@"http:%@",infoDic[@"user"][@"thumb"])]];
     
     [self.imageV sd_setBackgroundImageWithURL:infoDic[@"pic_url"] forState:(UIControlStateNormal)];
  

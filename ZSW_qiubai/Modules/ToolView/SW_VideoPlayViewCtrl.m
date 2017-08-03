@@ -8,10 +8,10 @@
 
 #import "SW_VideoPlayViewCtrl.h"
 #import "SW_VideoPlayCell.h"
-
 #import "SWVideoPlayer.h"
 
-#import "SW_BaseTabBarCtrl.h"
+
+#import "SW_DetailViewCtrl.h"//详情
 
 @interface SW_VideoPlayViewCtrl ()<UIScrollViewDelegate>
 
@@ -35,7 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
     self.SW_fullScreenPopGestureEnabled = NO;
     self.view.backgroundColor = [UIColor clearColor];
     
@@ -47,6 +47,13 @@
     [_tableView.mj_header beginRefreshing];
     
 
+}
+
+
+
+- (IBAction)backVC:(UIButton *)sender {
+    [self releaseSWPlayer];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - ===============生命周期===============
 
@@ -224,7 +231,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return KScreenWidth+20+15;
+    return KScreenWidth+84+30;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
@@ -238,6 +245,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self releaseSWPlayer];
+    
+    SW_DetailViewCtrl * VC = [SW_DetailViewCtrl new];
+    VC.infoDic = _dataArray[indexPath.row];
+    [self.navigationController pushViewController:VC animated:YES];
     
  
 }
@@ -254,6 +267,7 @@
 -(void)releaseSWPlayer{
     
     [_player stop];
+    [_player removeFromSuperview];
     
     
 }

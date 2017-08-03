@@ -10,7 +10,7 @@
 #import "UIViewController+SWNavigationExtension.h"
 #import "UIBarButtonItem+Extension.h"
 
-#define kDefaultBackImageName @"backbutton"
+#define kDefaultBackImageName @"backImage"
 
 #pragma mark - SWNavigationController
 @interface SWNavigationController ()<UINavigationControllerDelegate, UIGestureRecognizerDelegate>
@@ -182,7 +182,7 @@
         backButtonImage = [UIImage imageNamed:kDefaultBackImageName];
     }
 
-    viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem BarButtonItemWithImageName:@"backbutton" highImageName:nil title:@"返回" target:self action:@selector(didTapBackButton)];
+    viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem BarButtonItemWithImageName:@"backImage" highImageName:nil title:@"返回" target:self action:@selector(didTapBackButton)];
 //    viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(didTapBackButton)];
     
     [self.navigationController pushViewController:[SWWrapViewController wrapViewControllerWithViewController:viewController] animated:animated];

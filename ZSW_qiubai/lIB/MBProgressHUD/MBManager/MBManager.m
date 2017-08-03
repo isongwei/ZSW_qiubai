@@ -61,6 +61,13 @@ BOOL isShowGloomy;//是否显示深色背景
         prestrainView = view;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view ?:kDefaultView animated:YES];
         hud.label.text = message;
+        
+        {
+            hud.contentColor = [UIColor whiteColor];
+            hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+            hud.bezelView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.85];
+        }
+        
         hud.animationType = MBProgressHUDAnimationZoom;
         hud.mode = MBProgressHUDModeText;
         hud.margin = 10.f;
@@ -80,6 +87,14 @@ BOOL isShowGloomy;//是否显示深色背景
         MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:gloomyView];
         hud.label.text = kLoadingMessage;
         hud.removeFromSuperViewOnHide = YES;
+        
+        {
+            hud.contentColor = [UIColor whiteColor];
+            hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+            hud.bezelView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.85];
+        }
+        
+        
         gloomyView.frame = view ? CGRectMake(0, 0, view.frame.size.width, view.frame.size.height):
         kDefaultRect;
        
@@ -101,6 +116,13 @@ BOOL isShowGloomy;//是否显示深色背景
         prestrainView = view;
         MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:gloomyView];
         hud.label.text = title;
+        
+        {
+            hud.contentColor = [UIColor whiteColor];
+            hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+            hud.bezelView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.85];
+        }
+        
         hud.removeFromSuperViewOnHide = YES;
         gloomyView.frame = view ? CGRectMake(0, 0, view.frame.size.width, view.frame.size.height):
         kDefaultRect;
@@ -111,6 +133,8 @@ BOOL isShowGloomy;//是否显示深色背景
             [self showClearGloomyView];
         }
         [gloomyView addSubview:hud];
+        
+
         [hud showAnimated:YES];
       
     });
@@ -128,6 +152,13 @@ BOOL isShowGloomy;//是否显示深色背景
         UIImageView *littleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 37, 37)];
         littleView.image = [UIImage imageNamed:@"error.png"];
         hud.customView = littleView;
+        
+        {
+            hud.contentColor = [UIColor whiteColor];
+            hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+            hud.bezelView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.85];
+        }
+        
         hud.removeFromSuperViewOnHide = YES;
         hud.animationType = MBProgressHUDAnimationZoom;
         hud.label.text = title;
@@ -147,6 +178,12 @@ BOOL isShowGloomy;//是否显示深色背景
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view ?:kDefaultView animated:YES];
         UIImageView *littleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 37, 37)];
         littleView.image = [UIImage imageNamed:@"success.png"];
+        
+        {
+            hud.contentColor = [UIColor whiteColor];
+            hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+            hud.bezelView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.85];
+        }
         hud.customView = littleView;
         hud.removeFromSuperViewOnHide = YES;
         hud.animationType = MBProgressHUDAnimationZoom;
@@ -167,6 +204,13 @@ BOOL isShowGloomy;//是否显示深色背景
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view ?:kDefaultView animated:YES];
         UIImageView *littleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 37, 37)];
         littleView.image = [UIImage imageNamed:@"error.png"];
+        
+        {
+            hud.contentColor = [UIColor whiteColor];
+            hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+            hud.bezelView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.85];
+        }
+        
         hud.customView = littleView;
         hud.removeFromSuperViewOnHide = YES;
         hud.animationType = MBProgressHUDAnimationZoom;

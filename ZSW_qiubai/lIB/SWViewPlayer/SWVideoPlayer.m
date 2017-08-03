@@ -51,6 +51,10 @@
 @property (nonatomic,strong) UILabel *titleLabel;
 
 
+//当前状态
+@property (nonatomic,assign) SWPlayerStatus  status;
+
+
 //添加播放暂停按钮
 @property (nonatomic,strong) SWPauseOrPlayView * pauseOrPlayView;
 
@@ -109,6 +113,13 @@ static float count = 0;
     
     if (self = [super initWithFrame:frame]) {
         self.oldFrame = frame;
+        NSError *setCategoryErr = nil;
+        NSError *activationErr  = nil;
+        [[AVAudioSession sharedInstance]setCategory: AVAudioSessionCategoryPlayback
+                                              error: &setCategoryErr];
+        [[AVAudioSession sharedInstance]
+         setActive: YES
+         error: &activationErr];
     }
     return self;
     
@@ -126,6 +137,11 @@ static float count = 0;
 }
 
 -(void)setUrlString:(NSString *)urlString{
+    
+    if (self.item) {
+        [self stop];
+    }
+    
     _urlString = urlString;
     [self setUrl:[NSURL URLWithString:urlString]];
 }
@@ -150,6 +166,8 @@ static float count = 0;
         
         NSError * error = nil;
         AVKeyValueStatus tracksStatus = [self.avAsset statusOfValueForKey:@"duration" error:&error];
+        
+
         /*
          AVKeyValueStatusUnknown,
          AVKeyValueStatusLoading,
@@ -173,23 +191,26 @@ static float count = 0;
                 break;
             case AVKeyValueStatusLoading:
             {
-                NSLog(@"AVKeyValueStatusLoading正在加载");
+                DLog(@"AVKeyValueStatusLoading正在加载");
             }
                 break;
             case AVKeyValueStatusFailed:
             {
-                NSLog(@"AVKeyValueStatusFailed失败,请检查网络,或查看plist中是否添加App Transport Security Settings");
+                
+                DLog(@"AVKeyValueStatusFailed失败,请检查网络,或查看plist中是否添加App Transport Security Settings");
+                
+                [self setUrlString:_urlString];
             }
                 break;
             case AVKeyValueStatusCancelled:
             {
-                NSLog(@"AVKeyValueStatusCancelled取消");
+                DLog(@"AVKeyValueStatusCancelled取消");
             }
                 break;
                 
             case AVKeyValueStatusUnknown:
             {
-                 NSLog(@"AVKeyValueStatusUnknown未知");
+                 DLog(@"AVKeyValueStatusUnknown未知");
             }
                 break;
                 
@@ -380,27 +401,27 @@ static float count = 0;
         switch (itemStatus) {
             case AVPlayerItemStatusUnknown:
             {
-                _status = SWPlayerStatusUnknown;
-                [MBManager showError:@"AVPlayerItemStatusUnknown"];
-                NSLog(@"AVPlayerItemStatusUnknown");
+                self.status = SWPlayerStatusUnknown;
                 
-                self.pauseOrPlayView.imageBtn.selected = NO;
-                [self pause];
+                self.controlView.bufferValue = 0.0;
+                [self.activityIndeView startAnimating];
+                
+                DLog(@"AVPlayerItemStatusUnknown");
             }
                 break;
             case AVPlayerItemStatusReadyToPlay:
             {
-                _status = SWPlayerStatusReadyToPlay;
-                [MBManager showError:@"AVPlayerItemStatusReadyToPlay"];
-                NSLog(@"AVPlayerItemStatusReadyToPlay");
+                self.status = SWPlayerStatusPlaying;
+                
+                [self play];
+                DLog(@"AVPlayerItemStatusReadyToPlay");
             }
                 break;
             case AVPlayerItemStatusFailed:
             {
-                _status = SWPlayerStatusFailed;
-                [MBManager showError:@"AVPlayerItemStatusFailed"];
-                NSLog(@"AVPlayerItemStatusFailed");
-                self.pauseOrPlayView.imageBtn.selected = NO;
+                self.status = SWPlayerStatusFailed;
+                
+                DLog(@"AVPlayerItemStatusFailed");
                 [self pause];
             }
                 break;
@@ -416,7 +437,7 @@ static float count = 0;
     if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
         AVPlayerItem *playerItem = (AVPlayerItem *)object;
         NSArray * loadTimeRanges = [self.item loadedTimeRanges];
-        NSLog(@"%@",loadTimeRanges);
+        DLog(@"loadTimeRanges--%@",loadTimeRanges);
         
         //获取缓冲进度
         CMTimeRange timeRange = [loadTimeRanges.firstObject CMTimeRangeValue];
@@ -436,19 +457,21 @@ static float count = 0;
         //视频的总长度
         CGFloat totalDuration = CMTimeGetSeconds(duration);
         
-        NSLog(@"开始:%f,持续:%f,总时间:%f", startSecond, durationSeconds, timeInterval);
-        NSLog(@"视频的加载进度是:%%%f", durationSeconds / totalDuration *100);
+        DLog(@"开始:%f,持续:%f,总时间:%f", startSecond, durationSeconds, timeInterval);
+        DLog(@"视频的加载进度是:%%%f", durationSeconds / totalDuration *100);
         
+        
+        DLog(@"播放的Url---%@", _url.absoluteString);
         //缓冲值
         self.controlView.bufferValue = timeInterval/totalDuration;
         
         //获取播放状态
         //只有播放状态变成AVPlayerItemStatusReadyToPlay时才可以获取视频播放的总时间，提前获取无效;
         if (playerItem.status == AVPlayerItemStatusReadyToPlay){
-            NSLog(@"准备播放");
+            DLog(@"准备播放");
             
         } else{
-            NSLog(@"播放失败");
+            DLog(@"播放失败");
             
         }
  
@@ -457,7 +480,13 @@ static float count = 0;
     
     //监听播放器在缓冲数据的状态
     if ([keyPath isEqualToString:@"playbackBufferEmpty"]) {
-        _status = SWPlayerStatusBuffering;
+        self.status = SWPlayerStatusBuffering;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self play];
+            //here
+            [self.activityIndeView stopAnimating];
+        });
         
         if (!self.activityIndeView.isAnimating) {
             [self.activityIndeView startAnimating];
@@ -468,10 +497,14 @@ static float count = 0;
     
     
     if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
-        NSLog(@"缓冲达到可播放");
+        DLog(@"缓冲达到可播放");
         
         [self.activityIndeView stopAnimating];
         //由于 AVPlayer 缓存不足就会自动暂停，所以缓存充足了需要手动播放，才能继续播放
+        if (self.item.playbackLikelyToKeepUp && self.status == SWPlayerStatusBuffering){
+            
+            self.status = SWPlayerStatusPlaying;
+        }
         [self play];
     }
     
@@ -481,10 +514,10 @@ static float count = 0;
     
         if ([[change objectForKey:NSKeyValueChangeNewKey] integerValue] >= 0) {
             _isPlaying = false;
-            _status = SWPlayerStatusPlaying;
+            self.status = SWPlayerStatusPlaying;
         }else{
             _isPlaying = true;
-            _status = SWPlayerStatusStopped;
+            self.status = SWPlayerStatusStopped;
         }
     }
     
@@ -809,7 +842,7 @@ static float count = 0;
                 //        控制亮度的方法
                 [UIScreen mainScreen].brightness = tempLightValue;
                 //        实时改变现实亮度进度的view
-                NSLog(@"亮度调节 = %f",tempLightValue);
+                DLog(@"亮度调节 = %f",tempLightValue);
             }else{
                 
             }
@@ -917,7 +950,6 @@ static float count = 0;
         
     }
  
-    [self removeFromSuperview];
 }
 
 #pragma mark =============//将数值转换成时间=============
@@ -984,10 +1016,10 @@ static float count = 0;
     
 //    if (current!=self.lastTime) {
 //        //没有卡顿
-//        NSLog(@"没有卡顿");
+//        DLog(@"没有卡顿");
 //    }else{
 //        //卡顿了
-//        NSLog(@"卡顿了");
+//        DLog(@"卡顿了");
 //    }
 //    self.lastTime = current;
 }
@@ -1015,6 +1047,19 @@ static float count = 0;
         self.slider.enabled = NO;
          */
     }
+}
+
+
+-(void)setStatus:(SWPlayerStatus)status{
+    
+    _status = status;
+    if (status == SWPlayerStatusPlaying) {
+        self.pauseOrPlayView.imageBtn.selected = YES;
+    }else{
+        self.pauseOrPlayView.imageBtn.selected = NO;
+    }
+    
+    
 }
 
 

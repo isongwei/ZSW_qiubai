@@ -81,6 +81,10 @@
         self.tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
         [_slider addGestureRecognizer:self.tapGesture];
         [_slider addTarget:self action:@selector(handleSliderPosition:) forControlEvents:(UIControlEventValueChanged)];
+        
+        
+//        [_slider addTarget:self action:@selector(handleTap:) forControlEvents:(UIControlEventTouchUpInside)];
+        
         _slider.continuous = YES;
         
         _slider.minimumTrackTintColor = [UIColor grayColor];
@@ -128,7 +132,14 @@
 
 #pragma mark =============事件处理=============
 //单击处理
+//-(void)handleTap:(UISlider *)slider{
 -(void)handleTap:(UITapGestureRecognizer *)gesture{
+//    CGFloat sliderWidth = self.slider.frame.size.width;
+//    CGFloat currentValue = self.slider.value /sliderWidth * self.slider.maximumValue;
+//    if ([self.delegate respondsToSelector:@selector(controlView:pointSliderLocationWithCurrentValue:)]) {
+//        [self.delegate controlView:self pointSliderLocationWithCurrentValue:currentValue];
+//    }
+    
     
     CGPoint point = [gesture locationInView:self.slider];
     
@@ -143,6 +154,8 @@
     if ([self.delegate respondsToSelector:@selector(controlView:pointSliderLocationWithCurrentValue:)]) {
         [self.delegate controlView:self pointSliderLocationWithCurrentValue:currentValue];
     }
+    
+    
     
 }
 

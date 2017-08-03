@@ -36,15 +36,58 @@
     return ;
 }
 
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+- (IBAction)testMB:(UIButton *)sender {
     
-}
-
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+    switch (sender.tag ) {
+        case 1:
+        {
+            
+            [MBManager showLoading];
+            
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [MBManager hideAlert];
+            });
+        }
+            break;
+        case 2:
+        {
+            [MBManager showSuccess:@"OK简单的话"];
+        }
+            break;
+        case 3:
+        {
+            [MBManager showError:@"Error简单的话简简单的话简"];
+        }
+            break;
+        case 4:
+        {
+            [MBManager showErrorNet];
+        }
+            break;
+        case 5:
+        {
+            [MBManager showBriefAlert:@"简单的话简单的话简单的话简单的话"];
+        }
+            break;
+            
+        case 6:
+        {
+            [MBManager showWaitingWithTitle:@"提交中"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [MBManager hideAlert];
+            });
+            
+        }
+            break;
+            
+            
+        default:
+            break;
+    }
+    
+    
+    
     
 }
 

@@ -51,7 +51,7 @@
  */
 - (BOOL)isEmpty
 {
-    return ((self.length == 0) || (self == nil) || ([self isKindOfClass:[NSNull class]]) || (self.length == 0));
+    return ((self.length == 0) || (self == nil) || ([self isKindOfClass:[NSNull class]]) );
 }
 
 /*
