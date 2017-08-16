@@ -56,6 +56,11 @@ BOOL isShowGloomy;//是否显示深色背景
 
 //定义字,自动消失 在View
 + (void) showBriefAlert:(NSString *) message inView:(UIView *) view{
+    
+    if (view == nil) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self hideAlert];
         prestrainView = view;
@@ -79,8 +84,13 @@ BOOL isShowGloomy;//是否显示深色背景
 
 #pragma mark - 网络加载提示用
 
-//菊花加字(加载中...),在View
+//菊花加字(加载中...),在View       >>>>>>>>>>>>
 + (void) showLoadingInView:(UIView *) view{
+    
+    if (view == nil) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         
         prestrainView = view;
@@ -110,8 +120,14 @@ BOOL isShowGloomy;//是否显示深色背景
     });
 }
 
-//菊花加自定义字,在View
+//菊花加自定义字,在View    ?>>>>>
 + (void)showWaitingWithTitle:(NSString *)title inView:(UIView *)view {
+    
+    if (view == nil) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
+    
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         prestrainView = view;
         MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:gloomyView];
@@ -143,6 +159,10 @@ BOOL isShowGloomy;//是否显示深色背景
 //带图片提示语在View上
 +(void)showAlertWithErrorImage:(NSString *)title inView:(UIView *)view{
     
+    if (view == nil) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [MBManager hideAlert];
         prestrainView = view;
@@ -170,6 +190,10 @@ BOOL isShowGloomy;//是否显示深色背景
 
 +(void)showAlertWithSuccessImage:(NSString *)title inView:(UIView *)view{
     
+    if (view == nil) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [MBManager hideAlert];
         prestrainView = view;
@@ -195,6 +219,10 @@ BOOL isShowGloomy;//是否显示深色背景
 }
 
 +(void)showAlertWithErrorNetImage:(NSString *)title inView:(UIView *)view{
+    
+    if (view == nil) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [MBManager hideAlert];
